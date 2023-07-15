@@ -65,8 +65,29 @@ const refreshToken = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+// logout user
+const logoutUser = async (req: Request, res: Response) => {
+  try {
+    res.clearCookie('accessToken');
+
+    // Perform the logout logic
+    await UserService.logoutUser();
+
+    res.status(httpStatus.OK).json({
+      success: true,
+      message: 'User logged out successfully!',
+    });
+  } catch (error) {
+    res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
+      success: false,
+      message: 'Failed to logout user',
+    });
+  }
+};
+
 export const UserController = {
   createUser,
   refreshToken,
   loginUser,
+  logoutUser,
 };

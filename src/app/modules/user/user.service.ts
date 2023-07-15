@@ -10,6 +10,8 @@ import { User } from './user.model';
 import { jwtHelpers } from '../../../helpers/jwtHelpers';
 import config from '../../../config';
 import { Secret } from 'jsonwebtoken';
+import { ObjectId } from 'mongoose';
+import sendResponse from '../../../shared/sendResponse';
 
 // createUser
 const createUser = async (user: IUser): Promise<IUser | null> => {
@@ -98,8 +100,17 @@ const refreshToken = async (token: string): Promise<IRefreshTokenResponse> => {
   };
 };
 
+const logoutUser = async (): Promise<void> => {
+  try {
+    //
+  } catch (error) {
+    throw new Error('Failed to logout user');
+  }
+};
+
 export const UserService = {
   createUser,
   loginUser,
   refreshToken,
+  logoutUser,
 };
