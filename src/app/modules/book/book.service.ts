@@ -34,9 +34,19 @@ const updateBook = async (
   return updatedBook;
 };
 
+// deleteBook
+const deleteBook = async (id: string) => {
+  const deleteBook = await Book.findByIdAndDelete(id, {
+    new: true,
+  });
+
+  return deleteBook;
+};
+
 export const BookService = {
   createBook,
   getAllBooks,
   getSingleBook,
   updateBook,
+  deleteBook,
 };
