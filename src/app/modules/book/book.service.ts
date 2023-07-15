@@ -15,7 +15,28 @@ const getAllBooks = async (): Promise<IBook[]> => {
   return result;
 };
 
+// getSingleBook
+const getSingleBook = async (id: string): Promise<IBook | null> => {
+  const result = await Book.findById(id);
+
+  return result;
+};
+
+// updateBook
+const updateBook = async (
+  id: string,
+  updatedData: Partial<IBook>
+): Promise<IBook | null> => {
+  const updatedBook = await Book.findByIdAndUpdate(id, updatedData, {
+    new: true,
+  });
+
+  return updatedBook;
+};
+
 export const BookService = {
   createBook,
   getAllBooks,
+  getSingleBook,
+  updateBook,
 };
