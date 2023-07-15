@@ -8,6 +8,14 @@ const createBook = async (book: IBook): Promise<IBook | null> => {
   return newBook;
 };
 
+// getAllBooks
+const getAllBooks = async (): Promise<IBook[]> => {
+  const result = await Book.find({});
+
+  return result;
+};
+
 export const BookService = {
   createBook,
+  getAllBooks,
 };
