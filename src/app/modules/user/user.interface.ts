@@ -1,7 +1,7 @@
 import { Model } from 'mongoose';
 
 export type ILoginUser = {
-  phoneNumber: string;
+  email: string;
   password: string;
 };
 
@@ -14,22 +14,11 @@ export type IRefreshTokenResponse = {
   accessToken: string;
 };
 
-export type UserName = {
-  firstName: string;
-  lastName: string;
-};
-
-export type IUserRole = 'buyer' | 'seller';
-
 export type IUser = {
   _id: string;
-  phoneNumber: string;
-  role: IUserRole;
+  email: string;
   password: string;
-  name: UserName;
-  address: string;
-  budget: number;
-  income: number;
+  name: string;
 };
 
 export type IUserMethods = {
