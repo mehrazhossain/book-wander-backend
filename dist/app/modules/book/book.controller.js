@@ -12,25 +12,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const ApiError_1 = __importDefault(require("../../errors/ApiError"));
+exports.BookController = void 0;
+const catchAsync_1 = __importDefault(require("../../../shared/catchAsync"));
+const sendResponse_1 = __importDefault(require("../../../shared/sendResponse"));
 const http_status_1 = __importDefault(require("http-status"));
-const jwtHelpers_1 = require("../../helpers/jwtHelpers");
-const config_1 = __importDefault(require("../../config"));
-const auth = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        // Get authorization token
-        const token = req.headers.authorization;
-        if (!token) {
-            throw new ApiError_1.default(http_status_1.default.UNAUTHORIZED, 'You are not authorized');
-        }
-        // Verify token
-        let verifiedUser = null;
-        verifiedUser = jwtHelpers_1.jwtHelpers.verifyToken(token, config_1.default.jwt.secret);
-        req.user = verifiedUser;
-        next();
-    }
-    catch (error) {
-        next(error);
-    }
-});
-exports.default = auth;
+const book_service_1 = require("./book.service");
+// createBook
+const createBook = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield book_service_1.BookService.createBook(req.body);
+    (0, sendResponse_1.default)(res, {
+        statusCode: http_status_1.default.OK,
+        success: true,
+        message: 'Book added successfully!',
+        data: result,
+    });
+}));
+exports.BookController = {
+    createBook,
+};

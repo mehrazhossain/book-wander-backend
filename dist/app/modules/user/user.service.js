@@ -43,7 +43,7 @@ const loginUser = (payload) => __awaiter(void 0, void 0, void 0, function* () {
     }
     // Create access token
     const { _id } = isUserExist;
-    const accessToken = jwtHelpers_1.jwtHelpers.createToken({ _id }, config_1.default.jwt.secret, config_1.default.jwt.expires_in);
+    const accessToken = jwtHelpers_1.jwtHelpers.createToken({ _id, email }, config_1.default.jwt.secret, config_1.default.jwt.expires_in);
     // Create refresh token
     const refreshToken = jwtHelpers_1.jwtHelpers.createToken({ _id }, config_1.default.jwt.refresh_secret, config_1.default.jwt.refresh_expires_in);
     return {

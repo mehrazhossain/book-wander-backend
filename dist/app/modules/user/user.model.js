@@ -36,22 +36,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
-/* eslint-disable @typescript-eslint/no-explicit-any */
 const mongoose_1 = __importStar(require("mongoose"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const config_1 = __importDefault(require("../../../config"));
 const userSchema = new mongoose_1.Schema({
     name: {
-        type: {
-            firstName: {
-                type: String,
-                required: true,
-            },
-            lastName: {
-                type: String,
-                required: true,
-            },
-        },
+        type: String,
         required: true,
     },
     email: {
@@ -62,9 +52,8 @@ const userSchema = new mongoose_1.Schema({
     password: {
         type: String,
         required: true,
+        select: 0,
     },
-}, {
-    timestamps: true,
 });
 userSchema.methods.isUserExist = function (identifier, checkPassword = false) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -77,14 +66,13 @@ userSchema.methods.isUserExist = function (identifier, checkPassword = false) {
                 query = { _id: identifier };
             }
             else {
-                query = { phoneNumber: identifier };
+                query = { email: identifier };
             }
         }
         return yield exports.User.findOne(query, {
             _id: 1,
-            phoneNumber: 1,
+            email: 1,
             password: 1,
-            role: 1,
         });
     });
 };
@@ -99,7 +87,6 @@ userSchema.methods.isPasswordMatched = function (givenPassword, savedPassword) {
 userSchema.pre('save', function (next) {
     return __awaiter(this, void 0, void 0, function* () {
         // hashing user password
-        // eslint-disable-next-line @typescript-eslint/no-this-alias
         const user = this;
         user.password = yield bcrypt_1.default.hash(user.password, Number(config_1.default.bcrypt_salt_rounds));
         next();
