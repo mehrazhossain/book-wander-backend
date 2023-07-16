@@ -1,5 +1,17 @@
 import { Response } from 'express';
 
+// export type IApiResponse<T> = {
+//   statusCode: number;
+//   success: boolean;
+//   message?: string | null;
+//   meta?: {
+//     page: number;
+//     limit: number;
+//     total: number;
+//   };
+//   data?: T | null | undefined;
+// };
+
 type IApiResponse<T> = {
   statusCode: number;
   success: boolean;

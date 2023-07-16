@@ -8,4 +8,8 @@ export type IBook = {
   createdBy: string | undefined;
 };
 
+export type IBookFilters = {
+  searchTerm?: string;
+};
+
 export type BookModel = Model<IBook, Record<string, unknown>>;

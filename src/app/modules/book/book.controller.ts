@@ -1,13 +1,15 @@
 import { Request, Response } from 'express';
 import catchAsync from '../../../shared/catchAsync';
-import sendResponse from '../../../shared/sendResponse';
 import httpStatus from 'http-status';
 import { BookService } from './book.service';
 import { IBook } from './book.interface';
-import { Book } from './book.model.ts';
 import { jwtHelpers } from '../../../helpers/jwtHelpers';
 import config from '../../../config';
 import { Secret } from 'jsonwebtoken';
+import pick from '../../../shared/pick';
+import { bookFilterableFields } from './book.constants';
+import { paginationFields } from '../../../constants/pagination';
+import sendResponse from '../../../shared/sendResponse';
 
 // createBook
 const createBook = catchAsync(async (req: Request, res: Response) => {
@@ -23,13 +25,17 @@ const createBook = catchAsync(async (req: Request, res: Response) => {
 
 // get all books
 const getAllBooks = catchAsync(async (req: Request, res: Response) => {
-  const result = await BookService.getAllBooks();
+  const filters = pick(req.query, bookFilterableFields);
+
+  const paginationOptions = pick(req.query, paginationFields);
+
+  const result = await BookService.getAllBooks(filters, paginationOptions);
 
   sendResponse<IBook[]>(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: 'Books retrieved successfully!',
-    data: result,
+    data: result.data,
   });
 });
 

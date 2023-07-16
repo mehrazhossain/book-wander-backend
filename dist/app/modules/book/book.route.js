@@ -9,4 +9,8 @@ const book_controller_1 = require("./book.controller");
 const auth_1 = __importDefault(require("../../middlewares/auth"));
 const router = express_1.default.Router();
 router.post('/', auth_1.default, book_controller_1.BookController.createBook);
+router.get('/:id', book_controller_1.BookController.getSingleBook);
+router.put('/:id', auth_1.default, book_controller_1.BookController.updateBook);
+router.delete('/:id', auth_1.default, book_controller_1.BookController.deleteBook);
+router.get('/', book_controller_1.BookController.getAllBooks);
 exports.BookRoutes = router;

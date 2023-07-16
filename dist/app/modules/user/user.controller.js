@@ -73,8 +73,27 @@ const refreshToken = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, v
         data: result,
     });
 }));
+// logout user
+const logoutUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        res.clearCookie('accessToken');
+        // Perform the logout logic
+        yield user_service_1.UserService.logoutUser();
+        res.status(http_status_1.default.OK).json({
+            success: true,
+            message: 'User logged out successfully!',
+        });
+    }
+    catch (error) {
+        res.status(http_status_1.default.INTERNAL_SERVER_ERROR).json({
+            success: false,
+            message: 'Failed to logout user',
+        });
+    }
+});
 exports.UserController = {
     createUser,
     refreshToken,
     loginUser,
+    logoutUser,
 };

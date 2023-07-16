@@ -75,8 +75,17 @@ const refreshToken = (token) => __awaiter(void 0, void 0, void 0, function* () {
         accessToken: newAccessToken,
     };
 });
+const logoutUser = () => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        //
+    }
+    catch (error) {
+        throw new Error('Failed to logout user');
+    }
+});
 exports.UserService = {
     createUser,
     loginUser,
     refreshToken,
+    logoutUser,
 };
