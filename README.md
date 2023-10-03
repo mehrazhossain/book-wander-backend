@@ -1,33 +1,8 @@
-# l2a3-cow-hut-backend-assignment-mehrazhossain
-l2a3-cow-hut-backend-assignment-mehrazhossain created by GitHub Classroom
+﻿# Book-catalog-backend-assignment-5
+databaseUrl: https://book-catalog-backend-assignment-5.vercel.app/
+live site url: https://owlbook.netlify.app/
 
-  ### Live Link: https://example.com
-  ### Application Routes:
+backend git repo: https://github.com/senseix21/Book-catalog-backend-assignment-5/tree/main
 
-   #### User
-   - api/v1/auth/signup (POST)
-   - api/v1/users (GET)
-   - api/v1/users/6177a5b87d32123f08d2f5d4 (Single GET) Include an id that is saved in your database
-   - api/v1/users/6177a5b87d32123f08d2f5d4 (PATCH)
-   - api/v1/users/6177a5b87d32123f08d2f5d4 (DELETE) Include an id that is saved in your database
+frontend git repo: https://github.com/senseix21/Book-catalog-frontend-assignment-5
 
-
-   #### Cows
-   - api/v1/cows (POST)
-   - api/v1/cows (GET)
-   - api/v1/cows/6177a5b87d32123f08d2f5d4 (Single GET) Include an id that is saved in your database
-   - api/v1/cows/6177a5b87d32123f08d2f5d4 (PATCH)
-   - api/v1/cows/6177a5b87d32123f08d2f5d4 (DELETE) Include an id that is saved in your database
-
-   ### Pagination and Filtering routes of Cows
-
-   - api/v1/cows?pag=1&limit=10
-   - api/v1/cows?sortBy=price&sortOrder=asc
-   - api/v1/cows?minPrice=20000&maxPrice=70000
-   - api/v1/cows?location=Chattogram
-   - api/v1/cows?searchTerm=Cha
-     
-  
-   #### Orders
-   - api/v1/orders (POST)
-   - api/v1/orders (GET)
